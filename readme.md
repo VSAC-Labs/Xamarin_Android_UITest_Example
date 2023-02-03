@@ -5,7 +5,7 @@ Note: To avoid building the project in VS, use the APK from the "CompliedBinary"
 ### Build The Solution
 * Clone the project
 * Build the project. This version used VS 2022.
-* Archive the AppCenterXamrain_Test_Example project. Not the location of the .APK file for use later.
+* Archive the AppCenterXamrain_Test_Example project. Remember the location of the .APK file for use later.
 ### Create a Device Set in App Center Test portal
 * [AppCenter Portal](https://appcenter.ms)
 * Navigate to Test on the right hand webpage pane and select "Test runs"
@@ -40,11 +40,11 @@ appcenter test run uitest
 
 Parameters Defined
 ```
---app - this parameter contains the name of app on the AppCenter portal.
---devices - this parameter contains the device set on the AppCenter portal.
---app-path - comlete path to APK. This sample has the .APK moved to the CompliedBinary folder within the project.
---test-series - this parameter contains the set of tests from AppCenter portal
---uitest-tools-dir this parameter contains the path to UITest directory where storing Test tools like NUnit. 
+--appÂ - this parameter contains the name of app on the AppCenter portal.
+--devicesÂ - this parameter contains the device set on the AppCenter portal.
+--app-pathÂ - comlete path to APK. This sample has the .APK moved to the CompliedBinary folder within the project.
+--test-seriesÂ - this parameter contains the set of tests from AppCenter portal
+--uitest-tools-dirÂ this parameter contains the path to UITest directory where storing Test tools like NUnit. 
 --build-dir - the path to the UITestProject Build Directory
 ```
 
