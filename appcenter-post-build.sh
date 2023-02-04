@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "The Post Build Script START"
+echo "The Post Build Script START - updated"
 
 if [ -z "$AppCenterTokenForTest" ]
 then 
@@ -8,20 +8,23 @@ then
     exit
 fi
 
+echo "CURRENT FOLDER"
+pwd
+
+git clone https://github.com/VSAC-Labs/AppCenter_Generated_UITest_Base.git
+
+echo "$APPPATH"
+echo "$BUILDDIR"
+echo "$BUILDSCRIPT"
+echo "$MANIFEST"
+echo "$BRANCHNAME"
+echo "$TESTSERIES"
+echo "$DEVICESET"
+
 appcenter login --token $AppCenterTokenForTest
 
-appcenter test generate uitest --platform android --output-path /Users/runner/work/1/a/GeneratedTest
+appcenter test prepare uitest --artifacts-dir /Users/runner/work/1/a/Artifacts --app-path $APPPATH --build-dir $BUILDDIR --debug --quiet
 
-nuget restore -NonInteractive /Users/runner/work/1/a/GeneratedTest/AppCenter.UITest.Android.sln
-
-xbuild /Users/runner/work/1/a/GeneratedTest/AppCenter.UITest.Android.sln /p:Configuration=Release
-
-appcenter test prepare uitest --artifacts-dir /Users/runner/work/1/a/Artifacts --app-path /Users/runner/work/1/a/build/com.ManualTestOnDevice.ReleaseTest1.apk --build-dir /Users/runner/work/1/a/GeneratedTest/AppCenter.UITest.Android/bin/Release --debug --quiet
-
-#Debug Line
-echo "cat /Users/runner/work/1/a/Artifacts/manifest.json"
-cat /Users/runner/work/1/a/Artifacts/manifest.json
-
-appcenter test run manifest --manifest-path /Users/runner/work/1/a/Artifacts/manifest.json --app-path /Users/runner/work/1/a/build/com.ManualTestOnDevice.yourapp.apk --app AppCenterSupportDocs/ManualTestOnDevice --devices any_top_1_device --test-series launch-tests --locale en_US -p msft/test-run-origin=Build/Launch --debug --quiet --token $AppCenterTokenForTest
+appcenter test run manifest --manifest-path $MANIFEST --app-path $APPPATH --app AppCenterSupportDocs/ManualTestOnDevice --devices $DEVICESET --test-series $TESTSERIES --locale en_US -p msft/test-run-origin=Build/Launch --debug --quiet --token $AppCenterTokenForTest
 
 echo "The Post Build Script END"
