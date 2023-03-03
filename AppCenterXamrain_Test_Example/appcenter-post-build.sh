@@ -23,7 +23,13 @@ echo "$DEVICESET"
 
 appcenter login --token $AppCenterTokenForTest
 
-dotnet restore /AppCenter_Generated_UITest_Base/AppCenter.UITest.Android.sln
+cd AppCenter_Generated_UITest_Base
+pwd
+
+dotnet restore AppCenter.UITest.Android.sln
+
+cd ..
+pwd
 
 appcenter test prepare uitest --artifacts-dir /Users/runner/work/1/a/Artifacts --app-path $APPPATH --build-dir $BUILDDIR --debug --quiet
 
