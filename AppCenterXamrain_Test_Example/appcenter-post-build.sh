@@ -28,7 +28,7 @@ pwd
 
 git checkout 3.2.9
 
-dotnet restore AppCenter.UITest.Android.sln
+dotnet restore
 
 cd ..
 pwd
