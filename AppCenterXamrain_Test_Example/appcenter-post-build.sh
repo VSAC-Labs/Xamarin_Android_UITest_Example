@@ -26,6 +26,8 @@ appcenter login --token $AppCenterTokenForTest
 cd AppCenter_Generated_UITest_Base
 pwd
 
+git checkout 3.2.9
+
 dotnet restore AppCenter.UITest.Android.sln
 
 cd ..
